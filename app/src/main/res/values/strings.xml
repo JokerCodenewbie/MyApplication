@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="text_name">Hello Genymotion Virtual Device!</string>
+    <string name="current_activity_name">.ThirdChapter_3_2</string>
 </resources>

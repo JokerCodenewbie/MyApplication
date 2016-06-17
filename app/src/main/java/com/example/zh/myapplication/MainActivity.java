@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,25 +20,24 @@ public class MainActivity extends AppCompatActivity {
         Log.d("TAG","onCreate");
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        Button normal = (Button)findViewById(R.id.start_normal);
-        Button dialog = (Button)findViewById(R.id.start_dialog);
+        Button button_edittext = (Button)findViewById(R.id.button_edit_text);
+        final EditText editText = (EditText)findViewById(R.id.edit_text);
 
-        normal.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(MainActivity.this,NormalActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        dialog.setOnClickListener(new View.OnClickListener() {
+        button_edittext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,DialogActivity.class);
-                startActivity(intent);
+                switch (v.getId()){
+                    case R.id.button_edit_text:
+                        String text = editText.getText().toString();
+                        Toast.makeText(MainActivity.this,text,Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        break;
+                }
             }
         });
     }
+
 
     @Override
     protected void onStart() {

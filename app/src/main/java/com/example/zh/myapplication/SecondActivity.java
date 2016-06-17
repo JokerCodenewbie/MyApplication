@@ -30,9 +30,9 @@ public class SecondActivity extends Activity {
         Log.d("singleTask-Second",this.toString());
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.secondactivity);
-/*        Intent intent = getIntent();
-        String data = intent.getStringExtra("extra_data");
-        Log.d("SecondActivity",data);*/
+        Intent intent = getIntent();
+        String data = intent.getStringExtra("param1");
+        Log.d("SecondActivity",data);
 
         Button button2 = (Button)findViewById(R.id.button2);
         button2.setOnClickListener(new OnClickListener(){
