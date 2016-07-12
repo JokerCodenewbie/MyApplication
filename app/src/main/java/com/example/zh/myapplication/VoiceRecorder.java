@@ -1,60 +1,108 @@
 package com.example.zh.myapplication;
 
+import android.app.Activity;
+import android.media.MediaPlayer;
 import android.media.MediaRecorder;
+
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
+
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import android.widget.Toast;
 import java.io.IOException;
 
-/**
- * Created by ZH on 7/12/16.
- */
-public class VoiceRecorder extends AppCompatActivity implements View.OnClickListener {
 
-    private Button mButtonStart;
-    private Button mButtonStop;
-    private MediaRecorder recorder;
-    private final String FilePath = "/test.3gp";
+public class VoiceRecorder extends Activity {
+    Button play,stop,record;
+    private MediaRecorder myAudioRecorder;
+    private String outputFile = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.voicerecorder_layout);
 
-        mButtonStart= (Button) findViewById(R.id.button_start);
-        mButtonStop= (Button) findViewById(R.id.button_stop);
-        mButtonStop.setOnClickListener(this);
-        mButtonStart.setOnClickListener(this);
+        play=(Button)findViewById(R.id.button_play);
+        stop=(Button)findViewById(R.id.button_stop);
+        record=(Button)findViewById(R.id.button_record);
 
-    }
+        stop.setEnabled(false);
+        play.setEnabled(false);
+        outputFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/recording.3gp";;
 
+        myAudioRecorder=new MediaRecorder();
+        myAudioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        myAudioRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        myAudioRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
+        myAudioRecorder.setOutputFile(outputFile);
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.button_start:
-                recorder=new MediaRecorder();
-                recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-                recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-                recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-                recorder.setOutputFile(Environment.getExternalStorageDirectory() + FilePath);
-
+        record.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 try {
-                    recorder.prepare();
-                    recorder.start();
-                } catch (IOException e) {
+                    myAudioRecorder.prepare();
+                    myAudioRecorder.start();
+                }
+
+                catch (IllegalStateException e) {
+                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                break;
-            case R.id.button_stop:
-                recorder.stop();
-                recorder.reset();
-                recorder.release();
-                break;
 
-            default:break;
-        }
+                catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+                record.setEnabled(false);
+                stop.setEnabled(true);
+
+                Toast.makeText(getApplicationContext(), "Recording started", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myAudioRecorder.stop();
+                myAudioRecorder.release();
+                myAudioRecorder  = null;
+
+                stop.setEnabled(false);
+                play.setEnabled(true);
+
+                Toast.makeText(getApplicationContext(), "Audio recorded successfully",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) throws IllegalArgumentException,SecurityException,IllegalStateException {
+                MediaPlayer m = new MediaPlayer();
+
+                try {
+                    m.setDataSource(outputFile);
+                }
+
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    m.prepare();
+                }
+
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                m.start();
+                Toast.makeText(getApplicationContext(), "Playing audio", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

@@ -9,9 +9,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.Toast;
-
-import java.net.Inet4Address;
 
 /**
  * Created by ZH on 2016/6/15.
@@ -34,7 +31,7 @@ public class SecondActivity extends Activity {
         String data = intent.getStringExtra("param1");
         Log.d("SecondActivity",data);
 
-        Button button2 = (Button)findViewById(R.id.button2);
+        Button button2 = (Button)findViewById(R.id.button_stop);
         button2.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
