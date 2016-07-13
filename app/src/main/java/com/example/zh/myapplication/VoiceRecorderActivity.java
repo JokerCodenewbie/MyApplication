@@ -16,7 +16,7 @@ import android.widget.Toast;
 import java.io.IOException;
 
 
-public class VoiceRecorder extends Activity {
+public class VoiceRecorderActivity extends Activity {
     Button play,stop,record;
     private MediaRecorder myAudioRecorder;
     private String outputFile = null;
@@ -32,9 +32,10 @@ public class VoiceRecorder extends Activity {
 
         stop.setEnabled(false);
         play.setEnabled(false);
-        outputFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/recording.3gp";;
+        outputFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/recording.wmr";;
 
         myAudioRecorder=new MediaRecorder();
+        myAudioRecorder.reset();
         myAudioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         myAudioRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         myAudioRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
