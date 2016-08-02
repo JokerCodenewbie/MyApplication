@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.zh.myapplication"
-        minSdkVersion 9
+        minSdkVersion 10
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -24,4 +24,15 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.1.0'
+    compile 'com.android.support:cardview-v7:23.1.1'
+    compile 'com.android.support:recyclerview-v7:23.1.1'
+    compile 'org.jodd:jodd-http:3.6.7'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'de.hdodenhof:circleimageview:2.0.0'
+    compile 'com.squareup.okhttp:okhttp:2.7.2'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.daimajia.slider:library:1.1.5'
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'cn.bingoogolapple:bga-refreshlayout:1.1.3@aar'
+    compile 'com.kbeanie:image-chooser-library:1.6.0@aar'
 }
