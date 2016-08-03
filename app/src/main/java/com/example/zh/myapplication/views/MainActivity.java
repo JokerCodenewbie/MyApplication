@@ -1,4 +1,4 @@
-package com.example.zh.myapplication;
+package com.example.zh.myapplication.views;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.zh.myapplication.R;
 
 public class MainActivity extends AppCompatActivity {
 

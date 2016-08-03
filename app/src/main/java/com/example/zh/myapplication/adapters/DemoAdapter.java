@@ -5,10 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.zh.myapplication.models.Fruit;
+import com.example.zh.myapplication.models.Demo;
 import com.example.zh.myapplication.R;
 
 import java.util.List;
@@ -16,40 +15,40 @@ import java.util.List;
 /**
  * Created by ZH on 2016/8/3.
  */
-public class FruitAdapter extends ArrayAdapter<Fruit> {
+public class DemoAdapter extends ArrayAdapter<Demo> {
     private int resourceId;
 
-    public FruitAdapter(Context context, int textViewResourceId,
-                        List<Fruit> objects) {
+    public DemoAdapter(Context context, int textViewResourceId,
+                        List<Demo> objects) {
         super(context, textViewResourceId, objects);
         resourceId = textViewResourceId;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Fruit fruit = getItem(position);//获取当前项的Fruit实例
+        Demo demo = getItem(position);//获取当前项的Fruit实例
         View view;
         ViewHolder viewHolder;
         if (convertView == null) {
             view = LayoutInflater.from(getContext()).inflate(resourceId, null);
             viewHolder = new ViewHolder();
-            viewHolder.fruitImage = (ImageView) view.findViewById(R.id.image_fruit);
-            viewHolder.fruitName = (TextView) view.findViewById(R.id.text_fruit_name);
+            viewHolder.demoDescription = (TextView) view.findViewById(R.id.demo_desciption);
+            viewHolder.demoName = (TextView) view.findViewById(R.id.demo_name);
             view.setTag(viewHolder);//将ViewHolder存储在view中
         } else {
             view = convertView;
             viewHolder = (ViewHolder) view.getTag();//重新获取ViewHolder
         }
-        viewHolder.fruitImage.setImageResource(fruit.getImageId());
-        viewHolder.fruitName.setText(fruit.getName());
+        viewHolder.demoDescription.setText(demo.getDemoDescription());
+        viewHolder.demoName.setText(demo.getDemoName());
         return view;
     }
 
     class ViewHolder {
 
-        ImageView fruitImage;
+        TextView demoDescription;
 
-        TextView fruitName;
+        TextView demoName;
 
     }
 }

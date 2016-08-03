@@ -1,4 +1,4 @@
-package com.example.zh.myapplication;
+package com.example.zh.myapplication.views;
 
 import android.app.Activity;
 import android.media.MediaPlayer;
@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.Button;
 
 import android.widget.Toast;
+
+import com.example.zh.myapplication.R;
+
 import java.io.IOException;
 
 
