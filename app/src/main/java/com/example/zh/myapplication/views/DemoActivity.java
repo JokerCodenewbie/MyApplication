@@ -40,7 +40,7 @@ public class DemoActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
                     Demo demo = demoList.get(position);
-                    Intent intent = new Intent(DemoActivity.this,(Context)demo.getDemoActivity());
+                    Intent intent = new Intent(DemoActivity.this,demo.getDemoClass());
                     startActivity(intent);
                 }
             });

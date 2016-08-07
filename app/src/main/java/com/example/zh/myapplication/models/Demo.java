@@ -7,20 +7,17 @@ import android.content.Context;
  * Created by ZH on 2016/8/3.
  */
 public class Demo {
-    private Object demoActivity;
     private String demoName;
     private String demoDescription;
 
-    public Demo(Object activity){
-        demoActivity = activity;
+    public Class<? extends Activity> getDemoClass() {
+        return demoClass;
     }
 
-    public Object getDemoActivity() {
-        return demoActivity;
-    }
+    private Class<? extends android.app.Activity> demoClass;
 
-    public void setDemoActivity(Object demoActivity) {
-        this.demoActivity = demoActivity;
+    public Demo(Class<? extends android.app.Activity> demoClass){
+        this.demoClass = demoClass;
     }
 
     public String getDemoName() {
