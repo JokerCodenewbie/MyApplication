@@ -59,5 +59,10 @@ public class DemoActivity extends AppCompatActivity {
         main.setDemoName("First Code");
         demoList.add(main);
 
+        Demo chat = new Demo(ChatActivity.class);
+        chat.setDemoDescription("聊天界面简单实现");
+        chat.setDemoName("Chat Layout");
+        demoList.add(chat);
+
     }
 }
